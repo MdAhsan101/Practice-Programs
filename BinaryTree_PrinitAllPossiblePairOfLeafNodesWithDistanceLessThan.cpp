@@ -248,15 +248,20 @@ Enter value for lchild of 19
 -1
 Enter value for rchild of 19
 -1
+
 PreOrder: 10 5 4 3 8 20 15 18 16 19 25 
 PostOrder: 3 4 8 5 16 19 18 15 25 20 10
-InOrder: 3 4 5 8 10 15 16 18 19 20 25
+InOrder: 3 4 5 8 10 15 16 18 19 20 25 
 
-Enter the limiting distance between any two leaf nodes: 5
+Enter the limiting distance between any two leaf nodes: 6
 
-All possible pairs of such leaf nodes are as folows:
+All possible pairs of such leaf nodes are as folows: 
+{3 8}
 {3 25}
+{8 16}
+{8 19}
 {8 25}
+{16 19}
 {16 25}
 {19 25}
 */
