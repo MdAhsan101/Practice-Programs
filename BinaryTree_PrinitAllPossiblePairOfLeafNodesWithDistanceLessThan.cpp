@@ -174,16 +174,16 @@ int main()
         {
             n2= v[j];
             lca= LCA(root,n1->data,n2->data);
-            lca_dist= FindLevelForKey(root,n1->data,0);
+            lca_dist= FindLevelForKey(root,lca->data,0);
             n1_dist= FindLevelForKey(root,n1->data,0);
             n2_dist= FindLevelForKey(root,n2->data,0);
-            
+            int dbln= n1_dist + n2_dist -2*lca_dist;
+            if(dbln<=limit_dist)
+                {
+                    cout<<"{"<<n1->data <<" "<<n2->data<<"} "<<endl;
+                }
         }
-        int dbln= n1_dist + n2_dist -2*lca_dist;
-        if(dbln<=limit_dist)
-            {
-                cout<<"{"<<n1->data <<" "<<n2->data<<"} "<<endl;
-            }
+        
     }
    
 }
