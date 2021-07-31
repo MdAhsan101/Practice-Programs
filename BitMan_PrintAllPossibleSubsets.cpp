@@ -8,7 +8,7 @@ void AllPossibleSubsets(char *a, int n) // n= size of array
         for(int j=0; j<n; j++)
         {
             if(i & (1<<j))
-            {cout<<a[j]<<" ";}
+            {cout<<a[n-1-j]<<" ";}
         }
         cout<<endl;
     }
@@ -28,22 +28,14 @@ int main()
 /*
 Output:
 
-4
-a b c d
-
-a
-b
-a b
-c 
-a c
-b c
+3
 a b c
-d
-a d
-b d
-a b d
-c d
-a c d
-b c d
-a b c d
+
+c   
+b   
+c b 
+a   
+c a 
+b a
+c b a
 */

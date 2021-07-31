@@ -3,7 +3,7 @@ using namespace std;
 
 int CheckSetbit(int n, int pos)
 {
-    return (n && (n & (n-1))!=0);
+    return (n && (n & (1<<pos))!=0);
 }
 
 void TWO_UniqueNo(int a[],int n)
@@ -29,7 +29,7 @@ void TWO_UniqueNo(int a[],int n)
     int first_unique_no = 0;
     for(int i=0; i<n; i++)
     {
-        if(CheckSetbit(a[i],pos-1))
+        if(CheckSetbit(a[i],pos))
         {
             first_unique_no = first_unique_no^a[i];
         }
