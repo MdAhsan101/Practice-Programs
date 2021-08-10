@@ -29,7 +29,7 @@ void permute(vector<int> &narr,int n, int *hash, vector<int> &ans)
 int main()
 {
     vector<int> a={1,2,3,4};
-    int n=4;
+    int n=a.size();
     int hash[n]={0};
     vector<int> ans;
     permute(a,n,hash,ans);
