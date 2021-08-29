@@ -1,0 +1,51 @@
+int numBusesToDestination(vector<vector<int>>& routes, int source, int target) 
+{
+    unordered_map<int,vector<int>> MapBusStopToBusNo;
+    for(int bno=0;bno<routes.size();bno++)
+    {
+        for(auto BusStop:routes[bno])
+        {
+            MapBusStopToBusNo[BusStop].push_back(bno);
+        }
+    }
+    
+    int n=MapBusStopToBusNo.size();
+    vector<int> vbs(100001,0); //vbs= visited_bus_stop
+    vector<int> vbno(100001,0); //vbno= visited_bus_no
+    
+    queue<int> q;
+    q.push(source);
+    int bus_changed=0;
+    
+    while(!q.empty())
+    {
+        int s=q.size();
+        for(int i=0; i<s; i++)
+        {
+            int bs=q.front(); // bs= bus_stop_no
+            q.pop();
+            vbs[bs]=1;
+            if(bs==target)
+            {
+                return bus_changed;
+            }
+            vector<int> buses= MapBusStopToBusNo[bs];
+            for(auto bus_no:buses)
+            {
+                if(!vbno[bus_no])
+                {
+                    vbno[bus_no]=1;
+                    for(auto bs:routes[bus_no])
+                    {
+                        if(!vbs[bs])
+                        {
+                            q.push(bs);
+                        }
+                    }
+                }
+            }
+        }
+        bus_changed++;
+    }
+    return -1;
+}
