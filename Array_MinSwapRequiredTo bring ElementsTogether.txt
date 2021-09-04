@@ -1,0 +1,61 @@
+Ques:
+Given an array of n positive integers and a number k. 
+Find the minimum number of swaps required to bring all the numbers less than or equal to k together.
+
+int minSwap(int *arr, int n, int k) {
+    // Complet the function
+    int favele=0, nonfavele=0;
+    for(int i=0; i<n; i++)
+    {
+        if(arr[i]<=k)
+            favele++; // favourabler elements
+        else
+        {
+            nonfavele++; // non favourable elements
+        }
+    }
+    
+    int l=0, h=0;
+    int ws=favele; // ws= required window size
+    int f=0, nf=0; 
+    int minswap=0;
+    // f= count of favourable elements
+    // nf= count of non-favourable elements inside sliding window
+    while(h<ws)
+    {
+        if(arr[h]<=k)
+            f++; 
+        else
+        {
+            nf++; 
+        }
+        h++;
+    }
+    minswap=nf;
+    if(minswap==0)
+        return 0;
+        
+    
+    while(h<n)
+    {
+        if(arr[l]<=k)
+            {f--;}
+        else
+        {
+            nf--;
+        }
+        l++;
+        
+        if(arr[h]<=k)
+        {
+            f++;
+        }
+        else
+        {
+            nf++;
+        }
+        h++;
+        minswap=min(minswap,nf);
+    }
+    return minswap;
+}
