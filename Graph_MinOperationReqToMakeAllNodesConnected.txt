@@ -1,0 +1,65 @@
+/*
+Ques:(Wired Connection Problem)
+
+There are n computers numbered from 0 to n-1 connected by ethernet cables connections forming a network 
+where connections[i] = [a, b] represents a connection between computers a and b. 
+Any computer can reach any other computer directly or indirectly through the network.
+
+Given an initial computer network connections. You can extract certain cables between two directly connected computers, 
+and place them between any pair of disconnected computers to make them directly connected. 
+Return the minimum number of times you need to do this in order to make all the computers connected. 
+If it's not possible, return -1. 
+
+*/
+
+void DFS(vector<vector<int>> &G, int &n, vector<bool> &visited, int u)
+    {
+        visited[u]=true;
+        for(auto v:G[u])
+        {
+            if(!visited[v])
+            {
+                DFS(G,n,visited,v);
+            }
+        }
+    }
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        
+        int total_edges=connections.size();
+        vector<vector<int>> G(n);
+        
+        for(auto edge:connections)
+        {
+            int u=edge[0];
+            int v=edge[1];
+            G[u].push_back(v);
+            G[v].push_back(u);
+        }
+        
+        int comp=0; // no. of components
+        vector<bool> visited(n,false);
+        
+        for(int u=0; u<n; u++)
+        {
+                       
+                if(!visited[u])
+                {        
+                    comp++;
+                    DFS(G,n,visited,u);
+                }
+            
+        }
+        
+        int redundant_edges= total_edges-((n-1)-(comp-1));
+        int required_edges=comp-1; // minimum edges required to connect all nodes to form single components
+        
+        if(required_edges<=redundant_edges)
+        {
+            return required_edges;
+        }
+        else
+        {
+            return -1;
+        }
+    }
